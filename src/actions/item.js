@@ -1,10 +1,12 @@
 import axios from 'axios';
 
 class item {
-    serverPath = 'https://git.heroku.com/limitless-retreat-60716.git';
+    serverPath = 'https://limitless-retreat-60716.herokuapp.com';
     getCatalogs = async () => {
         try {
-            const response = await axios.get(serverPath + '/api/getCatalogs');
+            const response = await axios.get(
+                this.serverPath + '/api/getCatalogs'
+            );
             return response;
         } catch (error) {
             console.log(error);
@@ -12,7 +14,9 @@ class item {
     };
     getProducts = async () => {
         try {
-            const response = await axios.get(serverPath + '/api/getProducts');
+            const response = await axios.get(
+                this.serverPath + '/api/getProducts'
+            );
             return response;
         } catch (error) {
             console.log(error);
@@ -22,7 +26,7 @@ class item {
     getProductsForCatalog = async (id) => {
         try {
             const response = await axios.post(
-                serverPath + '/api/getProductsForCatalog',
+                this.serverPath + '/api/getProductsForCatalog',
                 {
                     catalogId: id,
                 }
@@ -34,12 +38,15 @@ class item {
     };
     sendMail = async (email, name, phoneNumber, message) => {
         try {
-            const response = await axios.post(serverPath + '/api/sendMessage', {
-                name: name,
-                email: email,
-                phoneNumber: phoneNumber,
-                message: message,
-            });
+            const response = await axios.post(
+                this.serverPath + '/api/sendMessage',
+                {
+                    name: name,
+                    email: email,
+                    phoneNumber: phoneNumber,
+                    message: message,
+                }
+            );
             return response;
         } catch (error) {
             console.log(error);
