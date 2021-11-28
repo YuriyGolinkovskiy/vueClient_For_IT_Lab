@@ -3,7 +3,7 @@
         <v-row class="myRow">
             <catalog-component
                 v-for="catalog in $store.getters.getAllCatalogs"
-                :key="catalog.id"
+                :key="catalog._id"
                 v-bind:catalog="catalog"
             />
         </v-row>

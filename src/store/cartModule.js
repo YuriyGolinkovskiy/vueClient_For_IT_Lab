@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import catalogModule from './catalogModule';
+import item from '../actions/item';
 
 export default {
     state: {
@@ -8,7 +9,7 @@ export default {
     },
     mutations: {
         addToCart(state, item) {
-            let found = state.cart.find((product) => product.id == item.id);
+            let found = state.cart.find((product) => product._id == item._id);
             if (found) {
                 found.quantity++;
                 found.totalPrice = found.quantity * found.price;
@@ -30,13 +31,13 @@ export default {
                 state.cart.splice(index, 1);
             }
         },
-        setCartProduct(state, id) {
-            state.cart.forEach((element) => {
-                if (element.id == id) {
-                    catalogModule.state.currentProduct = element;
-                }
-            });
-        },
+        // setCartProduct(state, id) {
+        //     catalogModule.state.currentProduct = {};
+
+        //     item.getProduct(id).then((res) => {
+        //         catalogModule.state.currentProduct = res.data;
+        //     });
+        // },
     },
     getters: {
         getCart(state) {

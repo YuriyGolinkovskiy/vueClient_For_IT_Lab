@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 class item {
-    serverPath = 'https://limitless-retreat-60716.herokuapp.com';
+    //serverPath = 'https://limitless-retreat-60716.herokuapp.com';
+    serverPath = 'http://localhost:8888';
     getCatalogs = async () => {
         try {
             const response = await axios.get(
@@ -9,7 +10,8 @@ class item {
             );
             return response;
         } catch (error) {
-            console.log(error);
+            console.log(error.response);
+            alert(error.response.data.message);
         }
     };
     getProducts = async () => {
@@ -19,23 +21,122 @@ class item {
             );
             return response;
         } catch (error) {
-            console.log(error);
+            console.log(error.response);
+            alert(error.response.data.message);
+        }
+    };
+
+    getProduct = async (id) => {
+        try {
+            const response = await axios.get(
+                this.serverPath + '/api/getProduct/' + id
+            );
+            return response;
+        } catch (error) {
+            console.log(error.response);
+            alert(error.response.data.message);
         }
     };
 
     getProductsForCatalog = async (id) => {
         try {
+            const response = await axios.get(
+                this.serverPath + '/api/getProductsForCatalog/' + id
+            );
+            return response;
+        } catch (error) {
+            console.log(error.response);
+            alert(error.response.data.message);
+        }
+    };
+
+    addProduct = async (product) => {
+        try {
             const response = await axios.post(
-                this.serverPath + '/api/getProductsForCatalog',
+                this.serverPath + '/api/addProduct',
                 {
-                    catalogId: id,
+                    about: product.about,
+                    name: product.name,
+                    price: product.price,
+                    url: product.url,
                 }
             );
             return response;
         } catch (error) {
-            console.log(error);
+            console.log(error.response);
+            alert(error.response.data.message);
         }
     };
+
+    addCatalog = async (catalog) => {
+        try {
+            const response = await axios.post(
+                this.serverPath + '/api/addCatalog',
+                {
+                    title: catalog.title,
+                    url: catalog.url,
+                    products: catalog.products,
+                }
+            );
+            return response;
+        } catch (error) {
+            console.log(error.response);
+            alert(error.response.data.message);
+        }
+    };
+    updateProduct = async (prod) => {
+        try {
+            const response = await axios.put(
+                this.serverPath + '/api/updateProduct',
+                {
+                    product: prod,
+                }
+            );
+            alert('Продукт обновлен');
+            return response;
+        } catch (error) {
+            console.log(error.response);
+            alert(error.response.data.message);
+        }
+    };
+    updateCatalog = async (item) => {
+        try {
+            const response = await axios.put(
+                this.serverPath + '/api/updateCatalog',
+                {
+                    catalog: item,
+                }
+            );
+            alert('Продукт обновлен');
+            return response;
+        } catch (error) {
+            console.log(error.response);
+            alert(error.response.data.message);
+        }
+    };
+    deleteProduct = async (id) => {
+        try {
+            const response = await axios.delete(
+                this.serverPath + '/api/deleteProduct/' + id
+            );
+            return response;
+        } catch (error) {
+            console.log(error.response);
+            alert(error.response.data.message);
+        }
+    };
+    deleteCatalog = async (id) => {
+        try {
+            const response = await axios.delete(
+                this.serverPath + '/api/deleteCatalog/' + id
+            );
+            return response;
+        } catch (error) {
+            console.log(error.response);
+            alert(error.response.data.message);
+        }
+    };
+
     sendMail = async (email, name, phoneNumber, message) => {
         try {
             const response = await axios.post(
@@ -49,7 +150,26 @@ class item {
             );
             return response;
         } catch (error) {
-            console.log(error);
+            console.log(error.response);
+            alert(error.response.data.message);
+        }
+    };
+
+    uploadFiles = async (files) => {
+        try {
+            const formData = new FormData();
+            files.forEach((file) => {
+                formData.append('file', file);
+            });
+            const response = await axios.post(
+                this.serverPath + '/api/loadFiles',
+                formData
+            );
+            alert('Файлы загружены на сервер!');
+            return response;
+        } catch (error) {
+            console.log(error.response);
+            alert(error.response.data.message);
         }
     };
 }

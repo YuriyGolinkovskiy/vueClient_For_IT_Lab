@@ -49,6 +49,9 @@
             <v-btn outlined class="ml-2 md-2"
                 ><router-link to="/feedBack">Обратная связь</router-link></v-btn
             >
+            <v-btn outlined class="ml-2 md-2"
+                ><router-link to="/admin">Админка</router-link></v-btn
+            >
             <v-spacer />
             <v-btn outlined class="md-6 "
                 ><router-link to="/cart">

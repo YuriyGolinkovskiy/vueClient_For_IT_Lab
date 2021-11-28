@@ -7,7 +7,7 @@
                 @mousedown="openPhoto"
                 @mouseup="$router.push(`/catalog/${catalog.title}`)"
             >
-                <v-img max-height="180px" max-width="300px" :src="catalog.url">
+                <v-img max-height="160px" max-width="300px" :src="catalog.url">
                 </v-img>
 
                 <v-card-title class="justify-center">{{
@@ -37,7 +37,7 @@ export default {
             'showDialog',
         ]),
         openPhoto() {
-            this.setCurrentProducts(this.catalog.id);
+            this.setCurrentProducts(this.catalog._id);
         },
     },
 };

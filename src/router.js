@@ -34,8 +34,28 @@ const routes = [
     },
     {
         path: '/admin',
-        component: () => import('./pages/AdminPage.vue'),
+        component: () => import('./pages/database/AdminPage.vue'),
         meta: { title: 'Admin' },
+    },
+    {
+        path: '/databaseCatalog',
+        component: () => import('./pages/database/CatalogPage.vue'),
+        meta: { title: 'DatabaseCatalog' },
+    },
+    {
+        path: '/databaseProduct',
+        component: () => import('./pages/database/ProductPage.vue'),
+        meta: { title: 'DatabaseProduct' },
+    },
+    {
+        path: '/loadFile',
+        component: () => import('./pages/database/LoadFilePage.vue'),
+        meta: { title: 'LoadFile' },
+    },
+    {
+        path: '*',
+        component: () => import('./pages/NotFoundPage.vue'),
+        meta: { title: 'PageNotFound' },
     },
 ];
 

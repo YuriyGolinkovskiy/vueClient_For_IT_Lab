@@ -19,31 +19,10 @@ export default {
     },
     mutations: {
         setCatalogs(state) {
-            var buff = [];
+            state.currentProducts = [];
             item.getCatalogs().then((res) => {
-                res.data.forEach((element) => {
-                    buff.push(element);
-                });
+                state.catalogs = res.data;
             });
-
-            // const db = getDatabase();
-            // const dbRef = ref(db, '/catalogs');
-
-            // onValue(
-            //     dbRef,
-            //     (snapshot) => {
-            //         snapshot.forEach((childSnapshot) => {
-            //             const childKey = childSnapshot.key;
-            //             const childData = childSnapshot.val();
-            //             childData.id = Number(childKey);
-            //             buff.push(childData);
-            //         });
-            //     },
-            //     {
-            //         onlyOnce: true,
-            //     }
-            // );
-            state.catalogs = buff;
         },
         showDialog(state) {
             state.dialogVisible = true;
@@ -56,74 +35,29 @@ export default {
         },
         setCurrentProducts(state, categoryId) {
             state.currentCategoryId = categoryId;
-            var products = [];
             item.getProductsForCatalog(categoryId).then((res) => {
-                res.data.forEach((element) => {
-                    products.push(element);
-                });
+                state.currentProducts = res.data;
             });
-            // const db = getDatabase();
-            // const dbRef = ref(db, '/products');
-
-            // onValue(
-            //     dbRef,
-            //     (snapshot) => {
-            //         snapshot.forEach((childSnapshot) => {
-            //             const childKey = childSnapshot.key;
-            //             const childData = childSnapshot.val();
-            //             if (childData.categoryId === categoryId) {
-            //                 childData.id = Number(childKey);
-            //                 products.push(childData);
-            //             }
-            //         });
-            //     },
-            //     {
-            //         onlyOnce: true,
-            //     }
-            // );
-            state.currentProducts = products;
         },
         setProducts(state) {
             var products = [];
             item.getProducts().then((res) => {
-                res.data.forEach((element) => {
-                    products.push(element);
-                });
+                products = res.data;
+                state.products = products;
             });
-            // const db = getDatabase();
-            // const dbRef = ref(db, '/products');
-            // onValue(
-            //     dbRef,
-            //     (snapshot) => {
-            //         snapshot.forEach((childSnapshot) => {
-            //             const childKey = childSnapshot.key;
-            //             const childData = childSnapshot.val();
-
-            //             childData.id = Number(childKey);
-            //             products.push(childData);
-            //         });
-            //         state.loading = true;
-            //     },
-            //     {
-            //         onlyOnce: true,
-            //     }
-            // );
-            state.products = products;
         },
         setCurrentProduct(state, id) {
-            state.currentProducts.forEach((element) => {
-                if (element.id == id) {
-                    state.currentProduct = element;
-                }
+            state.currentProduct = {};
+            item.getProduct(id).then((res) => {
+                state.currentProduct = res.data;
             });
         },
-        setProduct(state, id) {
-            state.products.forEach((element) => {
-                if (element.id == id) {
-                    state.currentProduct = element;
-                }
-            });
-        },
+        // setProduct(state, id) {
+        //     state.currentProduct = {};
+        //     item.getProduct(id).then((res) => {
+        //         state.currentProduct = res.data;
+        //     });
+        // },
         setCurrentCategoryProducts(state) {
             let c1 = [],
                 c2 = [],

@@ -19,7 +19,7 @@
                 <product-component
                     v-for="product in $store.getters.getCurrentCategoryProducts
                         .promotionProducts.products"
-                    :key="product.id"
+                    :key="product._id"
                     v-bind:product="product"
                 />
             </v-row>
@@ -31,7 +31,7 @@
                 <product-component
                     v-for="product in $store.getters.getCurrentCategoryProducts
                         .topProducts.products"
-                    :key="product.id"
+                    :key="product._id"
                     v-bind:product="product"
                 />
             </v-row>
@@ -43,7 +43,7 @@
                 <product-component
                     v-for="product in $store.getters.getCurrentCategoryProducts
                         .bestCostProducts.products"
-                    :key="product.id"
+                    :key="product._id"
                     v-bind:product="product"
                 />
             </v-row>

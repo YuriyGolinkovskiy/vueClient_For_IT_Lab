@@ -6,7 +6,7 @@
                 v-if="this.$route.path == '/cart'"
                 elevation="4"
                 @mousedown="openProduct"
-                @mouseup="$router.push(`/product/${product.id}`)"
+                @mouseup="$router.push(`/product/${product._id}`)"
             >
                 <v-img
                     :aspect-ratio="1"
@@ -60,7 +60,7 @@
                 class="text-center"
                 elevation="4"
                 @mousedown="openProduct"
-                @mouseup="$router.push(`/product/${product.id}`)"
+                @mouseup="$router.push(`/product/${product._id}`)"
             >
                 <v-img
                     :aspect-ratio="1"
@@ -103,21 +103,9 @@ export default {
         },
     },
     methods: {
-        ...mapMutations([
-            'setCurrentProduct',
-            'setProduct',
-            'addToCart',
-            'removeFromCart',
-            'setCartProduct',
-        ]),
+        ...mapMutations(['setCurrentProduct', 'addToCart', 'removeFromCart']),
         openProduct() {
-            if (this.$route.path == '/') {
-                this.setProduct(this.product.id);
-            } else if (this.$route.path == '/cart') {
-                this.setCartProduct(this.product.id);
-            } else {
-                this.setCurrentProduct(this.product.id);
-            }
+            this.setCurrentProduct(this.product._id);
         },
     },
 };

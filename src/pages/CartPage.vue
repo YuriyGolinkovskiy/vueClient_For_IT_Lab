@@ -4,7 +4,7 @@
             <v-row class="myRow">
                 <product-component
                     v-for="product in $store.getters.getCart"
-                    :key="product.id"
+                    :key="product._id"
                     v-bind:product="product"
                 />
             </v-row>
