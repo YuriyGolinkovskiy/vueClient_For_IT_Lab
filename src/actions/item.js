@@ -172,6 +172,34 @@ class item {
             alert(error.response.data.message);
         }
     };
+    getImg = async () => {
+        try {
+            const res = await axios.get(this.serverPath + '/api/getImg');
+            let files = [];
+            res.data.forEach((element) => {
+                files.push(this.serverPath + '/img/' + element);
+            });
+            return files;
+        } catch (error) {
+            console.log(error.response);
+            alert(error.response.data.message);
+        }
+    };
+
+    getFiles = async () => {
+        try {
+            const res = await axios.get(this.serverPath + '/api/getFiles');
+            console.log(res.data);
+            let files = [];
+            res.data.forEach((element) => {
+                files.push(this.serverPath + '/' + element);
+            });
+            return files;
+        } catch (error) {
+            console.log(error.response);
+            alert(error.response.data.message);
+        }
+    };
 }
 
 export default new item();

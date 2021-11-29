@@ -48,6 +48,11 @@ const routes = [
         meta: { title: 'DatabaseProduct' },
     },
     {
+        path: '/databaseStatic',
+        component: () => import('./pages/database/StaticPage.vue'),
+        meta: { title: 'DatabaseStatic' },
+    },
+    {
         path: '/loadFile',
         component: () => import('./pages/database/LoadFilePage.vue'),
         meta: { title: 'LoadFile' },

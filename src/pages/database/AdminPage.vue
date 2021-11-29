@@ -9,6 +9,9 @@
         <v-btn outlined class="butt">
             <router-link to="/loadFile">LoadFiles</router-link>
         </v-btn>
+        <v-btn outlined class="butt">
+            <router-link to="/databaseStatic">StaticFiles</router-link>
+        </v-btn>
     </v-container>
 </template>
 
