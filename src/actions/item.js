@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 class item {
-    //serverPath = 'https://limitless-retreat-60716.herokuapp.com';
+    //serverPath = 'https://node-server-it-lab.herokuapp.com';
     serverPath = 'http://localhost:8888';
     getCatalogs = async () => {
         try {
