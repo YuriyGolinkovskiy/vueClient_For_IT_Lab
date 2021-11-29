@@ -189,7 +189,6 @@ class item {
     getFiles = async () => {
         try {
             const res = await axios.get(this.serverPath + '/api/getFiles');
-            console.log(res.data);
             let files = [];
             res.data.forEach((element) => {
                 files.push(this.serverPath + '/' + element);
