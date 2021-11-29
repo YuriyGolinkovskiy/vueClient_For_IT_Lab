@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 class item {
-    //serverPath = 'https://node-server-it-lab.herokuapp.com';
-    serverPath = 'http://localhost:8888';
+    serverPath = 'https://node-server-it-lab.herokuapp.com';
+    //serverPath = 'http://localhost:8888';
     getCatalogs = async () => {
         try {
             const response = await axios.get(
